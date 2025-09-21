@@ -57,16 +57,18 @@ footer{display:none;}
 <body>  
 <div id="mainPage">  
   <header id="header">  
-    <img id="headerImage" src="https://i.ibb.co/Qv37RjPR/image.png" alt="Header Image">  
-    <button id="adminBtn"><img id="adminBtnLogo" src="https://i.ibb.co/Qv37RjPR/image.png" alt="Admin Logo"></button>  
+    <img id="headerImage" src="https://i.ibb.co/k60Jv9Fc/1000040701.jpg" alt="Header Image">  
+    <button id="adminBtn"><img id="adminBtnLogo" src="https://i.ibb.co/k60Jv9Fc/1000040701.jpg" alt="Admin Logo"></button>  
     <div id="searchContainer"><input type="text" id="searchInput" placeholder="Search"></div>  
     <div id="searchResult"></div>  
   </header>  
+
   <!-- OTT -->  
   <section id="ottSection">  
     <h2>More OTT Apps Coming Soon</h2>  
     <div class="ott-slider" id="ottSlider"></div>  
   </section>  
+
   <!-- Posters -->  
   <section id="moviePostersSection" style="padding:20px;">  
     <h2 style="text-align:left;font-size:20px;margin:10px 12px;">Latest Movies / Webseries</h2>  
@@ -91,10 +93,10 @@ footer{display:none;}
   </header>  
   <div id="adminControls">  
     <h2>Change Header Image</h2>  
-    <img id="adminHeaderPreview" src="https://i.ibb.co/Qv37RjPR/image.png" alt="Header Preview"><br>  
+    <img id="adminHeaderPreview" src="https://i.ibb.co/k60Jv9Fc/1000040701.jpg" alt="Header Preview"><br>  
     <button id="changeHeaderBtn">Choose Header Image</button><br><br>  
     <h2>Change Admin Logo</h2>  
-    <img id="adminLogoPreview" src="https://i.ibb.co/Qv37RjPR/image.png" alt="Admin Logo Preview"><br>  
+    <img id="adminLogoPreview" src="https://i.ibb.co/k60Jv9Fc/1000040701.jpg" alt="Admin Logo Preview"><br>  
     <button id="changeLogoBtn">Choose Logo</button><br><br>  
     <h2>Manage OTT Images</h2>  
     <div id="ottAdminControls"></div>  
@@ -186,14 +188,4 @@ const movieInput1=document.getElementById('movieInput1');
 const movieInput2=document.getElementById('movieInput2');  
 const movieAdminControls1=document.getElementById('movieAdminControls1');  
 const movieAdminControls2=document.getElementById('movieAdminControls2');  
-document.getElementById('addMovieBtn1').onclick=()=>{movieInput1.dataset.action="add";movieInput1.dataset.key="moviePosters1";movieInput1.click();};  
-document.getElementById('addMovieBtn2').onclick=()=>{movieInput2.dataset.action="add";movieInput2.dataset.key="moviePosters2";movieInput2.click();};  
-  
-function loadMoviePosters(key,row,admin,input){let arr=JSON.parse(localStorage.getItem(key)||'[]');row.innerHTML='';arr.forEach(src=>{let img=document.createElement('img');img.src=src;img.className='movie-card';row.appendChild(img);});renderMovieAdminControls(key,admin,input);}  
-function renderMovieAdminControls(key,admin,input){admin.innerHTML='';let arr=JSON.parse(localStorage.getItem(key)||'[]');arr.forEach((src,i)=>{let d=document.createElement('div');d.innerHTML=`<img src="${src}" style="width:100px;height:60px;object-fit:cover"><br><button data-i="${i}" class="chg">Change</button><button data-i="${i}" class="del">Delete</button>`;admin.appendChild(d);});admin.querySelectorAll('.chg').forEach(b=>{b.onclick=()=>{input.dataset.action="change";input.dataset.index=b.dataset.i;input.dataset.key=key;input.click();};});admin.querySelectorAll('.del').forEach(b=>{b.onclick=()=>{let arr=JSON.parse(localStorage.getItem(key)||'[]');arr.splice(b.dataset.i,1);localStorage.setItem(key,JSON.stringify(arr));loadMoviePosters(key,row,admin,input);};});}  
-function handleMovieInput(input){input.onchange=e=>{const f=e.target.files[0];if(f){const r=new FileReader();r.onload=ev=>{let key=input.dataset.key;let arr=JSON.parse(localStorage.getItem(key)||'[]');if(input.dataset.action==="add"){arr.push(ev.target.result);}else{arr[input.dataset.index]=ev.target.result;}localStorage.setItem(key,JSON.stringify(arr));loadMoviePosters(key,(key==='moviePosters1'?movieRow1:movieRow2),(key==='moviePosters1'?movieAdminControls1:movieAdminControls2),input);};r.readAsDataURL(f);}};}  
-handleMovieInput(movieInput1);handleMovieInput(movieInput2);  
-  
-window.onload=()=>{if(localStorage.getItem('headerImage'))headerImage.src=localStorage.getItem('headerImage');if(localStorage.getItem('adminLogo'))document.getElementById('adminBtnLogo').src=localStorage.getItem('adminLogo');loadOttImages();loadMoviePosters('moviePosters1',movieRow1,movieAdminControls1,movieInput1);loadMoviePosters('moviePosters2',movieRow2,movieAdminControls2,movieInput2);};  
-</script>  </body>  
-</html> 
+document.getElementById('addMovieBtn1').onclick=()=>
