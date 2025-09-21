@@ -4,74 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Website with Admin, OTT & Posters</title>
-<style>
-:root{
-  --bg:#000;
-  --nav-bg:#111;
-  --muted:#aaa;
-  --active:#00e0ff;
-}
-body{margin:0;font-family:Arial,sans-serif;background:var(--bg);color:#fff;padding-bottom:55px;}
-header{position:relative;width:100%;}
-#headerImage{width:100%;height:auto;display:block;}
-header::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0) 50%, rgba(0,0,0,0.7));pointer-events:none;}
-#searchContainer{position:absolute;top:70%;left:50%;transform:translate(-50%,-50%);width:180px;max-width:90%;z-index:10;}
-#searchInput{width:100%;padding:8px 12px;font-size:14px;border:2px solid #fff;border-radius:25px;background:rgba(255,255,255,0.2);color:#fff;outline:none;box-shadow:0 0 8px rgba(0,255,204,0.4);}
-#searchInput::placeholder{color:#fff;opacity:0.9;}
-#searchResult{position:absolute;top:95%;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.95);color:#fff;padding:12px 20px;border:1px solid #00ffcc;border-radius:10px;display:none;min-width:200px;z-index:20;text-align:center;box-shadow:0 0 15px rgba(0,255,204,0.5);}
-#adminBtn{position:absolute;top:0;right:0;margin:0;padding:0;border:none;background:transparent;cursor:pointer;z-index:1000;}
-#adminBtn img{width:250px;height:auto;display:block;object-fit:contain;}
-footer{display:none;}
-#loginBox{display:none;position:fixed;top:50px;right:10px;width:250px;padding:20px;background:#111;border:2px solid #00ffcc;border-radius:10px;z-index:2000;}
-#loginBox input{width:100%;padding:8px;margin:8px 0;border-radius:5px;border:1px solid #fff;background:#000;color:#fff;outline:none;}
-#loginBox button{width:100%;padding:8px;background:#00ffcc;border:none;font-weight:bold;cursor:pointer;}
-#loginMsg{color:#ff5555;display:none;margin-top:5px;}
-#adminDashboard{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000;overflow-y:auto;z-index:9999;color:#fff;}
-#adminControls{padding:20px;text-align:center;}
-#adminControls button{padding:10px 20px;margin:10px;background:#00ffcc;border:none;font-weight:bold;cursor:pointer;}
-#adminControls img{max-width:200px;margin:10px 0;}
-#imageInput,#logoInput,#ottInput,#movieInput1,#movieInput2{display:none;}
-/* OTT Section */
-#ottSection{padding:120px 20px 20px 20px;text-align:center;}
-#ottSection h2{color:#fff;font-size:22px;margin-bottom:15px;text-align:center;}
-.ott-slider{display:flex;gap:15px;overflow-x:auto;overflow-y:hidden;scroll-behavior:smooth;flex-wrap:nowrap;padding:10px 15px;box-sizing:border-box;}
-.ott-slider img{width:90px;height:90px;border-radius:12px;cursor:pointer;object-fit:contain;background:#000;transition:0.3s;box-shadow:0 0 8px rgba(0,200,255,0.5);margin-top:10px;}
-.ott-slider img.active-ott{transform:scale(1.05);box-shadow:0 0 16px rgba(0,200,255,0.9);}
-/* Posters Section */
-.row-scroll{display:flex;gap:12px;overflow-x:auto;padding:16px 12px;}
-.row-scroll::-webkit-scrollbar{height:8px}
-.row-scroll::-webkit-scrollbar-thumb{background:#333;border-radius:6px}
-.movie-card{width:150px;height:85px;border-radius:8px;flex:0 0 auto;object-fit:cover;border:1px solid #222;background:#111;}
-@media (max-width:420px){.movie-card{width:120px;height:70px}}
-/* Bottom nav */
-.bottom-nav{position:fixed;left:0;right:0;bottom:0;height:40px;background:linear-gradient(180deg,var(--nav-bg),#0f0f0f);display:flex;justify-content:space-around;align-items:center;border-top:1px solid #222;z-index:5000;padding:0 4px;}
-.bottom-nav a{flex:1;max-width:85px;text-align:center;color:var(--muted);text-decoration:none;font-size:11px;transition:color .2s ease, transform .2s ease;position:relative;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.bottom-nav a svg{width:17px;height:17px;stroke:white;margin-bottom:2px;transition:stroke .25s ease;}
-.bottom-nav a.active{color:var(--active);transform:translateY(-1px);}
-.bottom-nav a.active svg{stroke:var(--active);}
-.bottom-nav a.active::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:-2px;width:20px;height:2px;background:var(--active);border-radius:50%;box-shadow:0 1px 4px rgba(0,224,255,0.35);animation:slime .3s ease;}
-@keyframes slime{0%{width:0;height:0;opacity:0.3;}40%{width:22px;height:2px;opacity:1;}100%{width:20px;height:2px;}}
-@media(max-width:600px){#searchContainer{width:80%;top:75%;}#searchInput{font-size:14px;padding:8px 12px;}#adminBtn img{width:200px;}#loginBox{width:200px;}.ott-slider img{width:70px;height:70px;margin-top:8px;}}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 <div id="mainPage">
   <header id="header">
     <img id="headerImage" src="https://i.ibb.co/k60Jv9Fc/1000040701.jpg" alt="Header Image">
-    <button id="adminBtn"><img id="adminBtnLogo" src="https://i.ibb.co/zhWf2FPP/1000040695.png" alt="Admin Logo"></button>
+    <button id="adminBtn">
+      <img id="adminBtnLogo" src="https://i.ibb.co/zhWf2FPP/1000040695.png" alt="Admin Logo">
+    </button>
     <div id="searchContainer"><input type="text" id="searchInput" placeholder="Search"></div>
     <div id="searchResult"></div>
   </header>
 
-  <!-- OTT -->
+  <!-- OTT Section -->
   <section id="ottSection">
     <h2>More OTT Apps Coming Soon</h2>
     <div class="ott-slider" id="ottSlider"></div>
   </section>
 
-  <!-- Posters -->
-  <section id="moviePostersSection" style="padding:20px;">
-    <h2 style="text-align:left;font-size:20px;margin:10px 12px;">Latest Movies / Webseries</h2>
+  <!-- Posters Section -->
+  <section id="moviePostersSection">
+    <h2>Latest Movies / Webseries</h2>
     <div class="row-scroll" id="movieRow1"></div>
     <div class="row-scroll" id="movieRow2"></div>
   </section>
@@ -88,26 +42,30 @@ footer{display:none;}
 <!-- Admin Dashboard -->
 <div id="adminDashboard">
   <header>
-    <h1 style="text-align:center;">Admin Dashboard</h1>
-    <button id="logoutBtn" style="position:absolute;top:10px;right:10px;padding:10px;background:#00ffcc;border:none;cursor:pointer;">Logout</button>
+    <h1>Admin Dashboard</h1>
+    <button id="logoutBtn">Logout</button>
   </header>
   <div id="adminControls">
     <h2>Change Header Image</h2>
-    <img id="adminHeaderPreview" src="https://i.ibb.co/k60Jv9Fc/1000040701.jpg" alt="Header Preview"><br>
-    <button id="changeHeaderBtn">Choose Header Image</button><br><br>
+    <img id="adminHeaderPreview" src="https://i.ibb.co/k60Jv9Fc/1000040701.jpg" alt="Header Preview">
+    <button id="changeHeaderBtn">Choose Header Image</button>
+
     <h2>Change Admin Logo</h2>
-    <img id="adminLogoPreview" src="https://i.ibb.co/zhWf2FPP/1000040695.png" alt="Admin Logo Preview"><br>
-    <button id="changeLogoBtn">Choose Logo</button><br><br>
+    <img id="adminLogoPreview" src="https://i.ibb.co/zhWf2FPP/1000040695.png" alt="Admin Logo Preview">
+    <button id="changeLogoBtn">Choose Logo</button>
+
     <h2>Manage OTT Images</h2>
     <div id="ottAdminControls"></div>
     <button id="addOttBtn">Add New OTT Image</button>
     <input type="file" id="imageInput" accept="image/*">
     <input type="file" id="logoInput" accept="image/*">
-    <input type="file" id="ottInput" accept="image/*"><br><br>
+    <input type="file" id="ottInput" accept="image/*">
+
     <h2>Manage Movie Posters (Row 1)</h2>
     <div id="movieAdminControls1"></div>
     <button id="addMovieBtn1">Add Poster Row 1</button>
-    <input type="file" id="movieInput1" accept="image/*"><br><br>
+    <input type="file" id="movieInput1" accept="image/*">
+
     <h2>Manage Movie Posters (Row 2)</h2>
     <div id="movieAdminControls2"></div>
     <button id="addMovieBtn2">Add Poster Row 2</button>
@@ -115,149 +73,14 @@ footer{display:none;}
   </div>
 </div>
 
-<!-- Bottom Navigation with Icons -->
+<!-- Bottom Navigation -->
 <nav class="bottom-nav">
-  <a href="#" data-tab="home" class="active">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M3 9.75L12 3l9 6.75V21a.75.75 0 01-.75.75H3.75A.75.75 0 013 21V9.75z"/>
-    </svg>
-    Home
-  </a>
-  <a href="#" data-tab="movies">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M4 4h16v16H4V4zm4 0v16M16 4v16"/>
-    </svg>
-    Movies
-  </a>
-  <a href="#" data-tab="series">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 3l9 6-9 6-9-6 9-6zM3 15l9 6 9-6"/>
-    </svg>
-    Series
-  </a>
-  <a href="#" data-tab="anime">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c4.5 0 9 1.5 9 6s-4.5 9-9 9-9-4.5-9-9 4.5-6 9-6z"/>
-      <path stroke-linecap="round" stroke-linejoin="round" d="M9 10h.01M15 10h.01M9 15c1.5 1 4.5 1 6 0"/>
-    </svg>
-    Anime
-  </a>
+  <a href="#" data-tab="home" class="active">Home</a>
+  <a href="#" data-tab="movies">Movies</a>
+  <a href="#" data-tab="series">Series</a>
+  <a href="#" data-tab="anime">Anime</a>
 </nav>
 
-<script>
-// ====== ADMIN LOGIN ======
-const adminBtn=document.getElementById('adminBtn');
-const loginBox=document.getElementById('loginBox');
-const loginBtn=document.getElementById('loginBtn');
-const adminPassword=document.getElementById('adminPassword');
-const loginMsg=document.getElementById('loginMsg');
-const adminDashboard=document.getElementById('adminDashboard');
-const mainPage=document.getElementById('mainPage');
-const logoutBtn=document.getElementById('logoutBtn');
-const headerImage=document.getElementById('headerImage');
-const adminHeaderPreview=document.getElementById('adminHeaderPreview');
-const adminLogoPreview=document.getElementById('adminLogoPreview');
-const imageInput=document.getElementById('imageInput');
-const logoInput=document.getElementById('logoInput');
-const ottInput=document.getElementById('ottInput');
-const ottSlider=document.getElementById('ottSlider');
-const ottAdminControls=document.getElementById('ottAdminControls');
-const addOttBtn=document.getElementById('addOttBtn');
-
-// Default OTT Images
-const defaultOttImages = [
-  'https://i.ibb.co/JRjJMvgN/Netflix-Symbol.png',
-  'https://i.ibb.co/jP4bzQ3j/718b41945aab84bd2276c762266931d0.jpg',
-  'https://i.ibb.co/RksFMDqb/20250920-174316.jpg',
-  'https://i.ibb.co/TB1KkqcX/Screen-Shot-2018-02-26-at-10-53-26-PM.png',
-  'https://i.ibb.co/My31r5YW/1000040725.jpg'
-];
-
-// login
-adminBtn.addEventListener('click',()=>{loginBox.style.display=loginBox.style.display==='block'?'none':'block';loginMsg.style.display='none';adminPassword.value='';});
-loginBtn.addEventListener('click',()=>{if(adminPassword.value==='EDITFLEX'){loginBox.style.display='none';adminDashboard.style.display='block';mainPage.style.display='none';}else loginMsg.style.display='block';});
-logoutBtn.addEventListener('click',()=>{adminDashboard.style.display='none';mainPage.style.display='block';});
-
-// header/logo
-document.getElementById('changeHeaderBtn').addEventListener('click',()=>imageInput.click());
-imageInput.addEventListener('change',e=>{const file=e.target.files[0];if(file){const r=new FileReader();r.onload=ev=>{headerImage.src=ev.target.result;adminHeaderPreview.src=ev.target.result;localStorage.setItem('headerImage',ev.target.result);};r.readAsDataURL(file);}});
-document.getElementById('changeLogoBtn').addEventListener('click',()=>logoInput.click());
-logoInput.addEventListener('change',e=>{const file=e.target.files[0];if(file){const r=new FileReader();r.onload=ev=>{adminLogoPreview.src=ev.target.result;document.getElementById('adminBtnLogo').src=ev.target.result;localStorage.setItem('adminLogo',ev.target.result);};r.readAsDataURL(file);}});
-
-// ====== OTT ======
-function loadOttImages(){
-    let arr = JSON.parse(localStorage.getItem('ottImages')||'[]');
-    if(arr.length===0){arr = defaultOttImages; localStorage.setItem('ottImages', JSON.stringify(arr));}
-    ottSlider.innerHTML='';
-    arr.forEach(src=>{let img=document.createElement('img'); img.src=src; ottSlider.appendChild(img);});
-    renderOttAdminControls();
-}
-function renderOttAdminControls(){
-    ottAdminControls.innerHTML='';
-    let arr=JSON.parse(localStorage.getItem('ottImages'));
-    arr.forEach((src,i)=>{
-        let d=document.createElement('div');
-        d.innerHTML=`<img src="${src}" style="width:100px;height:60px;object-fit:cover"><br><button data-i="${i}" class="chg">Change</button><button data-i="${i}" class="del">Delete</button>`;
-        ottAdminControls.appendChild(d);
-    });
-    ottAdminControls.querySelectorAll('.chg').forEach(b=>{b.onclick=()=>{ottInput.dataset.action="change";ottInput.dataset.index=b.dataset.i;ottInput.click();};});
-    ottAdminControls.querySelectorAll('.del').forEach(b=>{b.onclick=()=>{let arr=JSON.parse(localStorage.getItem('ottImages'));arr.splice(b.dataset.i,1);localStorage.setItem('ottImages',JSON.stringify(arr));loadOttImages();};});
-}
-addOttBtn.onclick=()=>{ottInput.dataset.action="add";ottInput.click();};
-ottInput.onchange=e=>{const f=e.target.files[0];if(f){const r=new FileReader();r.onload=ev=>{let arr=JSON.parse(localStorage.getItem('ottImages')); if(ottInput.dataset.action==="add"){arr.push(ev.target.result);}else{arr[ottInput.dataset.index]=ev.target.result;} localStorage.setItem('ottImages',JSON.stringify(arr)); loadOttImages();};r.readAsDataURL(f);}};
-
-// ====== MOVIE POSTERS (2 Rows) ======
-const movieRow1=document.getElementById('movieRow1');
-const movieRow2=document.getElementById('movieRow2');
-const movieInput1=document.getElementById('movieInput1');
-const movieInput2=document.getElementById('movieInput2');
-const movieAdminControls1=document.getElementById('movieAdminControls1');
-const movieAdminControls2=document.getElementById('movieAdminControls2');
-
-document.getElementById('addMovieBtn1').onclick = () => { movieInput1.dataset.action = "add"; movieInput1.dataset.key = "moviePosters1"; movieInput1.click(); };
-document.getElementById('addMovieBtn2').onclick = () => { movieInput2.dataset.action = "add"; movieInput2.dataset.key = "moviePosters2"; movieInput2.click(); };
-
-function loadMoviePosters(key, row, admin, input) {
-    let arr = JSON.parse(localStorage.getItem(key) || '[]');
-    row.innerHTML = '';
-    arr.forEach(src => { let img = document.createElement('img'); img.src = src; img.className = 'movie-card'; row.appendChild(img); });
-    renderMovieAdminControls(key, admin, input);
-}
-function renderMovieAdminControls(key, admin, input) {
-    admin.innerHTML = '';
-    let arr = JSON.parse(localStorage.getItem(key) || '[]');
-    arr.forEach((src,i)=>{
-        let d=document.createElement('div');
-        d.innerHTML=`<img src="${src}" style="width:100px;height:60px;object-fit:cover"><br>
-                     <button data-i="${i}" class="chg">Change</button>
-                     <button data-i="${i}" class="del">Delete</button>`;
-        admin.appendChild(d);
-    });
-    admin.querySelectorAll('.chg').forEach(b=>{b.onclick=()=>{input.dataset.action="change";input.dataset.index=b.dataset.i;input.dataset.key=key;input.click();};});
-    admin.querySelectorAll('.del').forEach(b=>{b.onclick=()=>{let arr=JSON.parse(localStorage.getItem(key)||'[]'); arr.splice(b.dataset.i,1); localStorage.setItem(key,JSON.stringify(arr)); loadMoviePosters(key,(key==='moviePosters1'?movieRow1:movieRow2),(key==='moviePosters1'?movieAdminControls1:movieAdminControls2),input);};});
-}
-function handleMovieInput(input){
-    input.onchange=e=>{
-        const f=e.target.files[0];
-        if(f){const r=new FileReader(); r.onload=ev=>{
-            let key=input.dataset.key;
-            let arr=JSON.parse(localStorage.getItem(key)||'[]');
-            if(input.dataset.action==="add"){arr.push(ev.target.result);} else {arr[input.dataset.index]=ev.target.result;}
-            localStorage.setItem(key,JSON.stringify(arr));
-            loadMoviePosters(key,(key==='moviePosters1'?movieRow1:movieRow2),(key==='moviePosters1'?movieAdminControls1:movieAdminControls2),input);
-        }; r.readAsDataURL(f);}
-    };
-}
-handleMovieInput(movieInput1);
-handleMovieInput(movieInput2);
-
-window.onload = ()=>{
-    if(localStorage.getItem('headerImage')) headerImage.src = localStorage.getItem('headerImage');
-    if(localStorage.getItem('adminLogo')) document.getElementById('adminBtnLogo').src = localStorage.getItem('adminLogo');
-    loadOttImages();
-    loadMoviePosters('moviePosters1', movieRow1, movieAdminControls1, movieInput1);
-    loadMoviePosters('moviePosters2', movieRow2, movieAdminControls2, movieInput2);
-};
-</script>
+<script src="script.js"></script>
 </body>
 </html>
