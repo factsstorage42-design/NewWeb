@@ -206,58 +206,60 @@ function renderOttAdminControls(){
 addOttBtn.onclick=()=>{ottInput.dataset.action="add";ottInput.click();};
 ottInput.onchange=e=>{const f=e.target.files[0];if(f){const r=new FileReader();r.onload=ev=>{let arr=JSON.parse(localStorage.getItem('ottImages')); if(ottInput.dataset.action==="add"){arr.push(ev.target.result);}else{arr[ottInput.dataset.index]=ev.target.result;} localStorage.setItem('ottImages',JSON.stringify(arr)); loadOttImages();};r.readAsDataURL(f);}};
 
-// ====== MOVIE POSTERS (2 Rows) ======
-const movieRow1=document.getElementById('movieRow1');
-const movieRow2=document.getElementById('movieRow2');
-const movieInput1=document.getElementById('movieInput1');
-const movieInput2=document.getElementById('movieInput2');
-const movieAdminControls1=document.getElementById('movieAdminControls1');
-const movieAdminControls2=document.getElementById('movieAdminControls2');
+<!-- Movie Posters Section -->
+<section id="movie-posters">
+  <h2 style="color:white; text-align:center; margin-bottom:20px;">Movie Posters</h2>
 
-document.getElementById('addMovieBtn1').onclick = () => { movieInput1.dataset.action = "add"; movieInput1.dataset.key = "moviePosters1"; movieInput1.click(); };
-document.getElementById('addMovieBtn2').onclick = () => { movieInput2.dataset.action = "add"; movieInput2.dataset.key = "moviePosters2"; movieInput2.click(); };
+  <!-- Row 1 -->
+  <div class="poster-row">
+    <div class="poster">
+      <img src="https://i.ibb.co/3yCSZnKV/Tumbbad-Movie-1024x574.png" alt="Tumbbad-Movie">
+    </div>
+    <div class="poster">
+      <img src="https://i.ibb.co/84GKRpS4/stree-2-review-150343674-16x9-0.jpg" alt="Stree 2">
+    </div>
+    <div class="poster">
+      <img src="https://i.ibb.co/tT4WcrkR/SQUID-GAME-SEASON-2-Stair-Maze-Key-Art-EN-GB-1.jpg" alt="Squid Game Season 2">
+    </div>
+    <div class="poster">
+      <img src="https://i.ibb.co/v4SXpnWK/test-pic1749704959913.webp" alt="Test Pic">
+    </div>
+    <div class="poster">
+      <img src="https://i.ibb.co/fddBz00X/7e6418465c04470037053a25a299d3d09de643dde79511fb0a7b66227fd518e9.png" alt="Poster 5">
+    </div>
+  </div>
 
-function loadMoviePosters(key, row, admin, input) {
-    let arr = JSON.parse(localStorage.getItem(key) || '[]');
-    row.innerHTML = '';
-    arr.forEach(src => { let img = document.createElement('img'); img.src = src; img.className = 'movie-card'; row.appendChild(img); });
-    renderMovieAdminControls(key, admin, input);
-}
-function renderMovieAdminControls(key, admin, input) {
-    admin.innerHTML = '';
-    let arr = JSON.parse(localStorage.getItem(key) || '[]');
-    arr.forEach((src,i)=>{
-        let d=document.createElement('div');
-        d.innerHTML=`<img src="${src}" style="width:100px;height:60px;object-fit:cover"><br>
-                     <button data-i="${i}" class="chg">Change</button>
-                     <button data-i="${i}" class="del">Delete</button>`;
-        admin.appendChild(d);
-    });
-    admin.querySelectorAll('.chg').forEach(b=>{b.onclick=()=>{input.dataset.action="change";input.dataset.index=b.dataset.i;input.dataset.key=key;input.click();};});
-    admin.querySelectorAll('.del').forEach(b=>{b.onclick=()=>{let arr=JSON.parse(localStorage.getItem(key)||'[]'); arr.splice(b.dataset.i,1); localStorage.setItem(key,JSON.stringify(arr)); loadMoviePosters(key,(key==='moviePosters1'?movieRow1:movieRow2),(key==='moviePosters1'?movieAdminControls1:movieAdminControls2),input);};});
-}
-function handleMovieInput(input){
-    input.onchange=e=>{
-        const f=e.target.files[0];
-        if(f){const r=new FileReader(); r.onload=ev=>{
-            let key=input.dataset.key;
-            let arr=JSON.parse(localStorage.getItem(key)||'[]');
-            if(input.dataset.action==="add"){arr.push(ev.target.result);} else {arr[input.dataset.index]=ev.target.result;}
-            localStorage.setItem(key,JSON.stringify(arr));
-            loadMoviePosters(key,(key==='moviePosters1'?movieRow1:movieRow2),(key==='moviePosters1'?movieAdminControls1:movieAdminControls2),input);
-        }; r.readAsDataURL(f);}
-    };
-}
-handleMovieInput(movieInput1);
-handleMovieInput(movieInput2);
-
-window.onload = ()=>{
-    if(localStorage.getItem('headerImage')) headerImage.src = localStorage.getItem('headerImage');
-    if(localStorage.getItem('adminLogo')) document.getElementById('adminBtnLogo').src = localStorage.getItem('adminLogo');
-    loadOttImages();
-    loadMoviePosters('moviePosters1', movieRow1, movieAdminControls1, movieInput1);
-    loadMoviePosters('moviePosters2', movieRow2, movieAdminControls2, movieInput2);
-};
+  <!-- Row 2 -->
+  <div class="poster-row">
+    <div class="poster">
+      <img src="https://i.ibb.co/7d1dfvKG/414929.png" alt="Poster 1">
+    </div>
+    <div class="poster">
+      <img src="https://i.ibb.co/NgxddkRm/netflix-stranger-things-poster.jpg" alt="Stranger Things">
+    </div>
+    <div class="poster">
+      <img src="https://i.ibb.co/gbM4n3T4/maxresdefault2-1580819060.jpg" alt="Poster 3">
+    </div>
+    <div class="poster">
+      <img src="https://i.ibb.co/gZPyShRt/manjummel-boys-1.jpg" alt="Poster 4">
+    </div>
+    <div class="poster">
+      <img src="https://i.ibb.co/0ykhzJDx/3-Idiots.jpg" alt="3 Idiots">
+    </div>
+    <div class="poster">
+      <img src="https://i.ibb.co/4wT0DkNy/bg7.jpg" alt="Poster 6">
+    </div>
+    <div class="poster">
+      <img src="https://i.ibb.co/pB0C79zn/6c524de6e42e226d0850c1952aa74ac3c762e3b4567d6436919fc391c920fe1b.jpg" alt="Poster 7">
+    </div>
+    <div class="poster">
+      <img src="https://i.ibb.co/F47gRY5k/Sitaare-Zameen-Par-1746448219357-1746448231111.jpg" alt="Sitaare Zameen Par">
+    </div>
+    <div class="poster">
+      <img src="https://i.ibb.co/QjYVvbZq/Pathaan-6.jpg" alt="Pathaan">
+    </div>
+  </div>
+</section>
 </script>
 </body>
 </html>
